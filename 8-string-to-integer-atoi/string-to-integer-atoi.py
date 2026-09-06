@@ -1,27 +1,28 @@
+
 class Solution(object):
     def myAtoi(self, s):
 
         t = ""
         sign = 1
-        i = 0
+        start = 0
 
-        
-        while i < len(s) and s[i] == " ":
-            i += 1
+        for i in range(len(s)):
+            if s[i] != " ":
+                start = i
+                break
 
-        
-        if i < len(s) and s[i] == "-":
+        if start < len(s) and s[start] == "-":
             sign = -1
-            i += 1
-        elif i < len(s) and s[i] == "+":
-            i += 1
+            start += 1
+        elif start < len(s) and s[start] == "+":
+            start += 1
 
-        
-        while i < len(s) and s[i].isdigit():
-            t += s[i]
-            i += 1
+        for i in range(start, len(s)):
+            if s[i].isdigit():
+                t += s[i]
+            else:
+                break
 
-       
         if t == "":
             return 0
 
@@ -32,7 +33,6 @@ class Solution(object):
 
         num = num * sign
 
-       
         if num < -2**31:
             return -2**31
 
@@ -40,3 +40,4 @@ class Solution(object):
             return 2**31 - 1
 
         return num
+
