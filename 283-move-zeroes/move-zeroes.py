@@ -4,8 +4,11 @@ class Solution(object):
         :type nums: List[int]
         :rtype: None Do not return anything, modify nums in-place instead.
         """
+        temp = nums
         for num in nums :
             if num == 0 :
-                nums.remove(num)
-                nums.append(num)
+                temp.remove(num)
+                temp.append(num)
+
+        nums = temp
         return nums
